@@ -12,6 +12,7 @@ class TestApp(unittest.TestCase):
         data = response.get_json()
         self.assertIn('total_revenue', data)
         self.assertIsInstance(data['total_revenue'], int)
+        self.assertGreater(data['total_revenue'], 0)
 
     def test_highest_region(self):
         response = self.app.get('/highest_region')
@@ -21,3 +22,5 @@ class TestApp(unittest.TestCase):
         self.assertIn('total_sales', data)
         self.assertIsInstance(data['highest_region'], str)
         self.assertIsInstance(data['total_sales'], int)
+        self.assertTrue(len(data['highest_region']) > 0)
+
